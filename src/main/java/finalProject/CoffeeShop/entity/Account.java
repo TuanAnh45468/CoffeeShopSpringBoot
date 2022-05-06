@@ -3,7 +3,7 @@ package finalProject.CoffeeShop.entity;
 public class Account {
 
 	private int id;
-	private  int id_user;
+	private  int userId;
 	private String name;
 	private String password;
 	
@@ -14,7 +14,7 @@ public class Account {
 	public Account(int id, int id_user, String name, String password) {
 		super();
 		this.id = id;
-		this.id_user = id_user;
+		this.userId = id_user;
 		this.name = name;
 		this.password = password;
 	}
@@ -27,12 +27,14 @@ public class Account {
 		this.id = id;
 	}
 
-	public int getId_user() {
-		return id_user;
+	
+
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -53,7 +55,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", id_user=" + id_user + ", name=" + name + ", password=" + password + "]";
+		return "Account [id=" + id + ", id_user=" + userId + ", name=" + name + ", password=" + password + "]";
 	}
 	
 	
