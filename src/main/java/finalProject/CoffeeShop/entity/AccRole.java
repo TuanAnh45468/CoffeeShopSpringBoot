@@ -37,8 +37,4 @@ public class AccRole {
 	public String toString() {
 		return "AccRole [accId=" + accId + ", roleId=" + roleId + "]";
 	}
-	
-	
-	
-	
 }
