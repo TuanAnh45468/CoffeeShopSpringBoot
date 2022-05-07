@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,6 +39,10 @@ public class Account {
 			inverseJoinColumns = @JoinColumn(name="id_role")
 			)
 	private List<Role> roleList;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_user")
+	private User userAcc;
 	
 	public Account() {
 		
