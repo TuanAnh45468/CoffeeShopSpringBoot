@@ -1,21 +1,46 @@
 package finalProject.CoffeeShop.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="additional_info")
 public class AdditionalInfo {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	
+	@Column(name="id_product")
 	private int productId;
+	
+	@Column(name="country")
 	private String country;
+	
+	@Column(name="region")
 	private String region;
+	
+	@Column(name="method")
 	private String method;
+	
+	@Column(name="species")
 	private String species;
+	
+	@Column(name="roast")
 	private String roast;
 	
 	public AdditionalInfo() {
 		
 	}
 	
-	
-
 	public AdditionalInfo(int id, int productId, String country, String region, String method, String species,
 			String roast) {
 		super();
@@ -27,8 +52,10 @@ public class AdditionalInfo {
 		this.species = species;
 		this.roast = roast;
 	}
-
-
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_product")
+	private ProductDetail productInfo;
 
 	public int getId() {
 		return id;
