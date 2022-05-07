@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,10 +21,7 @@ public class ProductDetail {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
-	
-	@Column(name="id_cate")
-	private int cateId;
+	private int id;	
 	
 	@Column(name="name")
 	private String name;
@@ -68,6 +66,10 @@ public class ProductDetail {
 			)
 	private List<User> userListCart;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="id_cate")
+	private Category category;
+	
 	public ProductDetail() {
 		
 	}
@@ -92,13 +94,21 @@ public class ProductDetail {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getCateId() {
-		return cateId;
+	
+	public List<User> getUserListCart() {
+		return userListCart;
 	}
 
-	public void setCateId(int cateId) {
-		this.cateId = cateId;
+	public void setUserListCart(List<User> userListCart) {
+		this.userListCart = userListCart;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public String getName() {
@@ -175,10 +185,10 @@ public class ProductDetail {
 
 	@Override
 	public String toString() {
-		return "ProductDetail [id=" + id + ", cateId=" + cateId + ", name=" + name + ", brand=" + brand + ", breed="
-				+ breed + ", weight=" + weight + ", quantity=" + quantity + ", description=" + description
-				+ ", details=" + details + ", price=" + price + ", image=" + image + "]";
+		return "ProductDetail [id=" + id + ", name=" + name + ", brand=" + brand + ", breed=" + breed + ", weight="
+				+ weight + ", quantity=" + quantity + ", description=" + description + ", details=" + details
+				+ ", price=" + price + ", image=" + image + ", userList=" + userList + ", userListCart=" + userListCart
+				+ ", category=" + category + "]";
 	}
-	
 	
 }
