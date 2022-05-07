@@ -19,9 +19,6 @@ public class AdditionalInfo {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="id_product")
-	private int productId;
-	
 	@Column(name="country")
 	private String country;
 	
@@ -53,6 +50,8 @@ public class AdditionalInfo {
 		this.roast = roast;
 	}
 	
+
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_product")
 	private ProductDetail productInfo;
@@ -63,6 +62,14 @@ public class AdditionalInfo {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public ProductDetail getProductInfo() {
+		return productInfo;
+	}
+
+	public void setProductInfo(ProductDetail productInfo) {
+		this.productInfo = productInfo;
 	}
 
 	public int getProductId() {

@@ -22,7 +22,7 @@ public class Role {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="id")
+	@Column(name="info")
 	private String info;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
