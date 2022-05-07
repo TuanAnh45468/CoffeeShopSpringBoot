@@ -1,17 +1,65 @@
 package finalProject.CoffeeShop.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="product_detail")
 public class ProductDetail {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	
+	@Column(name="id_cate")
 	private int cateId;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="brand")
 	private String brand;
+	
+	@Column(name="breed")
 	private String breed;
+	
+	@Column(name="weight")
 	private String weight;
+	
+	@Column(name="quantity")
 	private int quantity;
+	
+	@Column(name="description")
 	private String description;
+	
+	@Column(name="details")
 	private String details;
+	
+	@Column(name="price")
 	private double price;
+	
+	@Column(name="image")
 	private String image;
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(
+			name="review",
+			joinColumns = @JoinColumn(name= "id_product"),
+			inverseJoinColumns = @JoinColumn(name="id_user")
+			)
+	private List<User> userList;
+	
 	
 	public ProductDetail() {
 		
@@ -19,18 +67,15 @@ public class ProductDetail {
 
 	public ProductDetail(int id, int cateId, String name, String brand, String breed, String weight, int quantity,
 			String description, String details, double price, String image) {
-		super();
-		this.id = id;
-		this.cateId = cateId;
-		this.name = name;
-		this.brand = brand;
-		this.breed = breed;
-		this.weight = weight;
-		this.quantity = quantity;
-		this.description = description;
-		this.details = details;
-		this.price = price;
-		this.image = image;
+
+	}
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
 	}
 
 	public int getId() {

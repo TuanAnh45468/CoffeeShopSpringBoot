@@ -1,31 +1,29 @@
 package finalProject.CoffeeShop.entity;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="review")
 public class Review {
-	private int id;
+	
 	private int userId;
+	
 	private int productId;
+	
 	private String comment;
+	
 	private int rate;
 	
 	public Review() {
 		
 	}
 
-	public Review(int id, int userId, int productId, String comment, int rate) {
+	public Review(int userId, int productId, String comment, int rate) {
 		super();
-		this.id = id;
 		this.userId = userId;
 		this.productId = productId;
 		this.comment = comment;
 		this.rate = rate;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getUserId() {
@@ -62,7 +60,7 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [id=" + id + ", userId=" + userId + ", productId=" + productId + ", comment=" + comment
+		return "Review [userId=" + userId + ", productId=" + productId + ", comment=" + comment
 				+ ", rate=" + rate + "]";
 	}
 	

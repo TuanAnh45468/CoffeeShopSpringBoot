@@ -1,13 +1,49 @@
 package finalProject.CoffeeShop.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="phone_number")
 	private String phoneNumber;
+	
+	@Column(name="address")
 	private String address;
+	
+	@Column(name="city")
 	private String city;
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(
+			name="review",
+			joinColumns = @JoinColumn(name="id_user"),
+			inverseJoinColumns = @JoinColumn(name="id_product")
+			)
+	private List<ProductDetail> productDetail;
 	
 	public User() {
 		
@@ -21,6 +57,16 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.city = city;
+	}
+	
+	
+
+	public List<ProductDetail> getProductDetail() {
+		return productDetail;
+	}
+
+	public void setProductDetail(List<ProductDetail> productDetail) {
+		this.productDetail = productDetail;
 	}
 
 	public int getId() {
