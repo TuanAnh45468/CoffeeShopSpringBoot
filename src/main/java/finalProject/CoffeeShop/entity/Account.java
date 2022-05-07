@@ -22,10 +22,7 @@ public class Account {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	
-	@Column(name="id_user")
-	private  int userId;
-	
+
 	@Column(name="name")
 	private String name;
 	
@@ -51,9 +48,16 @@ public class Account {
 	public Account(int id, int id_user, String name, String password) {
 		super();
 		this.id = id;
-		this.userId = id_user;
 		this.name = name;
 		this.password = password;
+	}
+	
+	public User getUserAcc() {
+		return userAcc;
+	}
+
+	public void setUserAcc(User userAcc) {
+		this.userAcc = userAcc;
 	}
 
 	public List<Role> getRoleList() {
@@ -70,16 +74,6 @@ public class Account {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getName() {
@@ -100,7 +94,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", id_user=" + userId + ", name=" + name + ", password=" + password + "]";
+		return "Account [id=" + id + ", name=" + name + ", password=" + password + "]";
 	}
 	
 	
