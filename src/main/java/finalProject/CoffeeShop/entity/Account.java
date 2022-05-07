@@ -1,11 +1,26 @@
 package finalProject.CoffeeShop.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 public class Account {
 
 	private int id;
 	private  int userId;
 	private String name;
 	private String password;
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(
+			name="acc_role",
+			joinColumns = @JoinColumn(name="id_acc"),
+			inverseJoinColumns = @JoinColumn(name="id_role")
+			)
+	private List<Role> roleList;
 	
 	public Account() {
 		
@@ -17,6 +32,14 @@ public class Account {
 		this.userId = id_user;
 		this.name = name;
 		this.password = password;
+	}
+
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
 	}
 
 	public int getId() {

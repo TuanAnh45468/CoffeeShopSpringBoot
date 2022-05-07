@@ -70,6 +70,16 @@ public class User {
 	}
 	
 	
+	
+	
+
+	public List<ProductDetail> getProductListCart() {
+		return productListCart;
+	}
+
+	public void setProductListCart(List<ProductDetail> productListCart) {
+		this.productListCart = productListCart;
+	}
 
 	public List<ProductDetail> getProductDetail() {
 		return productDetail;
