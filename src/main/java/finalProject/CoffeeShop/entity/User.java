@@ -45,6 +45,16 @@ public class User {
 			)
 	private List<ProductDetail> productDetail;
 	
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(
+			name="cart_product",
+			joinColumns = @JoinColumn(name= "id_user"),
+			inverseJoinColumns = @JoinColumn(name="id_product")
+			)
+	private List<ProductDetail> productListCart;
+	
+	
 	public User() {
 		
 	}
