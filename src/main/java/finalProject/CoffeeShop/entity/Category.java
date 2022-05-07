@@ -35,6 +35,16 @@ public class Category {
 		this.id = id;
 		this.name = name;
 	}
+	
+	
+
+	public List<ProductDetail> getProductDetailList() {
+		return productDetailList;
+	}
+
+	public void setProductDetailList(List<ProductDetail> productDetailList) {
+		this.productDetailList = productDetailList;
+	}
 
 	public int getId() {
 		return id;
@@ -54,10 +64,8 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "Category [id=" + id + ", name=" + name + ", productDetailList=" + productDetailList + "]";
 	}
-	
-	
-	
+
 	
 }
