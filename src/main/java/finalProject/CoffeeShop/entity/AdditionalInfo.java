@@ -42,7 +42,6 @@ public class AdditionalInfo {
 			String roast) {
 		super();
 		this.id = id;
-		this.productId = productId;
 		this.country = country;
 		this.region = region;
 		this.method = method;
@@ -70,14 +69,6 @@ public class AdditionalInfo {
 
 	public void setProductInfo(ProductDetail productInfo) {
 		this.productInfo = productInfo;
-	}
-
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
 	}
 
 	public String getCountry() {
@@ -122,7 +113,7 @@ public class AdditionalInfo {
 
 	@Override
 	public String toString() {
-		return "AdditionalInfo [id=" + id + ", productId=" + productId + ", country=" + country + ", region=" + region
+		return "AdditionalInfo [id=" + id + ", country=" + country + ", region=" + region
 				+ ", method=" + method + ", species=" + species + ", roast=" + roast + "]";
 	}
 	
