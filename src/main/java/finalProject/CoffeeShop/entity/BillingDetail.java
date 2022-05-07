@@ -1,9 +1,12 @@
 package finalProject.CoffeeShop.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class BillingDetail {
 	
 	private int id;
-	private int listId;
 	private String firstName;
 	private String lastName;
 	private String country;
@@ -11,21 +14,34 @@ public class BillingDetail {
 	private String phoneNumber;
 	private String address;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="id_list")
+	private ListBill listBill;
+	
 	public BillingDetail() {
 
 	}
 
-	public BillingDetail(int id, int listId, String firstName, String lastName, String country, String email,
+	public BillingDetail(int id, String firstName, String lastName, String country, String email,
 			String phoneNumber, String address) {
 		super();
 		this.id = id;
-		this.listId = listId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.country = country;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
+	}
+	
+	
+
+	public ListBill getListBill() {
+		return listBill;
+	}
+
+	public void setListBill(ListBill listBill) {
+		this.listBill = listBill;
 	}
 
 	public int getId() {
@@ -34,14 +50,6 @@ public class BillingDetail {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getListId() {
-		return listId;
-	}
-
-	public void setListId(int listId) {
-		this.listId = listId;
 	}
 
 	public String getFirstName() {
@@ -94,7 +102,7 @@ public class BillingDetail {
 
 	@Override
 	public String toString() {
-		return "BillingDetail [id=" + id + ", listId=" + listId + ", firstName=" + firstName + ", lastName=" + lastName
+		return "BillingDetail [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", country=" + country + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address
 				+ "]";
 	}

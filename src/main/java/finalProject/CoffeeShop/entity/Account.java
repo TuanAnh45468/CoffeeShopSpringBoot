@@ -94,9 +94,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", name=" + name + ", password=" + password + "]";
+		return "Account [id=" + id + ", name=" + name + ", password=" + password + ", roleList=" + roleList
+				+ ", userAcc=" + userAcc + "]";
 	}
-	
-	
-	
 }
