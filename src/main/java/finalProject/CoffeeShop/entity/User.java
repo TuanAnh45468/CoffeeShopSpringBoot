@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -54,6 +55,8 @@ public class User {
 			)
 	private List<ProductDetail> productListCart;
 	
+	@OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	private List<ListBill> listBill;
 	
 	public User() {
 		
@@ -70,8 +73,14 @@ public class User {
 	}
 	
 	
-	
-	
+
+	public List<ListBill> getListBill() {
+		return listBill;
+	}
+
+	public void setListBill(List<ListBill> listBill) {
+		this.listBill = listBill;
+	}
 
 	public List<ProductDetail> getProductListCart() {
 		return productListCart;

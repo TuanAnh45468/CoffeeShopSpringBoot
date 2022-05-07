@@ -2,10 +2,31 @@ package finalProject.CoffeeShop.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="list_bill")
 public class ListBill {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
-	private int userId;
+	
+	@Column(name="date")
 	private Date date;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="id_user")
+	private User user;
 	
 	public ListBill() {
 			
@@ -14,8 +35,16 @@ public class ListBill {
 	public ListBill(int id, int userId, Date date) {
 		super();
 		this.id = id;
-		this.userId = userId;
 		this.date = date;
+	}
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getId() {
@@ -24,14 +53,6 @@ public class ListBill {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public Date getDate() {
@@ -44,7 +65,7 @@ public class ListBill {
 
 	@Override
 	public String toString() {
-		return "ListBill [id=" + id + ", userId=" + userId + ", date=" + date + "]";
+		return "ListBill [id=" + id + ", date=" + date + "]";
 	}
 	
 	
