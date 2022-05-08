@@ -10,7 +10,7 @@ public interface AccountService {
 	
 	public Account findById(int theId);
 	
-	public void save(Account theEmployee);
+	public void save(Account theAccount);
 	
 	public void deleteById(int theId);
 }

@@ -19,7 +19,7 @@ public class BillingDetailServiceImpl implements BillingDetailService {
 	}
 
 	@Override
-	public void save(BillingDetail theEmployee) {
+	public void save(BillingDetail theBillingDetail) {
 		// TODO Auto-generated method stub
 
 	}

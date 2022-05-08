@@ -9,7 +9,7 @@ public interface AdditionalInfoService {
 	
 	public AdditionalInfo findById(int theId);
 	
-	public void save(AdditionalInfo theEmployee);
+	public void save(AdditionalInfo theAdditionalInfo);
 	
 	public void deleteById(int theId);
 }

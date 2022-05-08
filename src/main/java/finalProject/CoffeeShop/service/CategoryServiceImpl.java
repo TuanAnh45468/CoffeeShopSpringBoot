@@ -19,7 +19,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void save(Category theEmployee) {
+	public void save(Category theCategory) {
 		// TODO Auto-generated method stub
 
 	}

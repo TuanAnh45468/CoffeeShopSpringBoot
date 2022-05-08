@@ -10,7 +10,7 @@ public interface BillingDetailService {
 	
 	public BillingDetail findById(int theId);
 	
-	public void save(BillingDetail theEmployee);
+	public void save(BillingDetail theBillingDetail);
 	
 	public void deleteById(int theId);
 }

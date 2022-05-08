@@ -19,7 +19,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void save(Account theEmployee) {
+	public void save(Account theAccount) {
 		// TODO Auto-generated method stub
 
 	}
