@@ -1,33 +1,51 @@
 package finalProject.CoffeeShop.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import finalProject.CoffeeShop.dao.CategoryRepository;
 import finalProject.CoffeeShop.entity.Category;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
-
+	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	public CategoryServiceImpl(CategoryRepository theCategoryRepository) {
+		categoryRepository = theCategoryRepository;
+	}
+	
 	@Override
 	public List<Category> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return categoryRepository.findAll();
 	}
 
 	@Override
 	public Category findById(int theId) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Category> result = categoryRepository.findById(theId);
+		
+		Category category = null;
+		
+		if(result.isPresent()) {
+			category = result.get();
+		} else {
+			throw new RuntimeException("Did not find the account " + theId);
+		}
+		
+		return category;
 	}
 
 	@Override
 	public void save(Category theCategory) {
-		// TODO Auto-generated method stub
-
+		categoryRepository.save(theCategory);
 	}
 
 	@Override
 	public void deleteById(int theId) {
-		// TODO Auto-generated method stub
-
+		categoryRepository.deleteById(theId);
 	}
 
 }
