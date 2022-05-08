@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import finalProject.CoffeeShop.entity.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
-
+	
 }
