@@ -1,33 +1,52 @@
 package finalProject.CoffeeShop.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import finalProject.CoffeeShop.dao.ListBillRepository;
 import finalProject.CoffeeShop.entity.ListBill;
 
+@Service
 public class ListBillServiceImpl implements ListBillService {
-
+	private ListBillRepository listBillRepository;
+	
+	@Autowired
+	public ListBillServiceImpl(ListBillRepository theListBillRepository) {
+		listBillRepository = theListBillRepository;
+	}
+	
+	
 	@Override
 	public List<ListBill> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return listBillRepository.findAll();
 	}
 
 	@Override
 	public ListBill findById(int theId) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<ListBill> result = listBillRepository.findById(theId);
+		
+		ListBill listBill = null;
+		
+		if(result.isPresent()) {
+			listBill = result.get();
+		} else {
+			throw new RuntimeException("Did not find the account " + theId);
+		}
+		
+		return listBill;
 	}
 
 	@Override
 	public void save(ListBill theListBill) {
-		// TODO Auto-generated method stub
-
+		listBillRepository.save(theListBill);
 	}
 
 	@Override
 	public void deleteById(int theId) {
-		// TODO Auto-generated method stub
-
+		listBillRepository.deleteById(theId);
 	}
 
 }
