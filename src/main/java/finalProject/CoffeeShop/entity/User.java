@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -58,11 +59,18 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	private List<ListBill> listBill;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_acc")
+	private Account account;
+	
 	public User() {
 		
 	}
+	
 
-	public User(int id, String name, String email, String phoneNumber, String address, String city) {
+	public User(int id, String name, String email, String phoneNumber, String address, String city,
+			List<ProductDetail> productDetail, List<ProductDetail> productListCart, List<ListBill> listBill,
+			Account account) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -70,9 +78,23 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.city = city;
+		this.productDetail = productDetail;
+		this.productListCart = productListCart;
+		this.listBill = listBill;
+		this.account = account;
 	}
-	
-	
+
+
+
+
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	public List<ListBill> getListBill() {
 		return listBill;

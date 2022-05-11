@@ -29,6 +29,9 @@ public class Account {
 	@Column(name="password")
 	private String password;
 	
+	@Column(name="email")
+	private String email;
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="acc_role",
@@ -37,27 +40,37 @@ public class Account {
 			)
 	private List<Role> roleList;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="id_user")
-	private User userAcc;
+	@OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
+	private User user;
 	
 	public Account() {
 		
 	}
-
-	public Account(int id, int id_user, String name, String password) {
+	
+	public Account(int id, String name, String password, String email, List<Role> roleList, User user) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
-	}
-	
-	public User getUserAcc() {
-		return userAcc;
+		this.email = email;
+		this.roleList = roleList;
+		this.user = user;
 	}
 
-	public void setUserAcc(User userAcc) {
-		this.userAcc = userAcc;
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<Role> getRoleList() {
@@ -94,7 +107,9 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", name=" + name + ", password=" + password + ", roleList=" + roleList
-				+ ", userAcc=" + userAcc + "]";
+		return "Account [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", roleList="
+				+ roleList + ", user=" + user + "]";
 	}
+	
+	
 }
