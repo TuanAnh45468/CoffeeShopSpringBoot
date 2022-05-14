@@ -21,7 +21,7 @@
   <!-- Coffeez Style sheet -->
   <link rel="stylesheet" th:href="@{assets/css/style.css}">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/assets/img/favicon.ico}">
 
 </head>
 
@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="qty-outter">
-                      <a href="product-single.html" class="andro_btn-custom">Buy Now</a>
+                      <a th:href="@{/product-single}" class="andro_btn-custom">Buy Now</a>
                       <div class="qty">
                         <span class="qty-subtract"><i class="fa fa-minus"></i></span>
                         <input type="text" name="qty" value="1">
@@ -244,31 +244,13 @@
 
   <!-- Aside (Mobile Navigation) -->
   <aside class="andro_aside andro_aside-left">
-    <a class="navbar-brand" href="index.html"> <img src="assets/img/logo.png" alt="logo"> </a>
+    <a class="navbar-brand" th:href="@{/index}"> <img src="assets/img/logo.png" alt="logo"> </a>
 
     <ul>
       <li class="menu-item menu-item-has-children">
-        <a href="#">Home Pages</a>
-        <ul class="sub-menu">
-          <li class="menu-item"> <a href="index.html">Home v1</a> </li>
-          <li class="menu-item"> <a href="home-v2.html">Home v2</a> </li>
-          <li class="menu-item"> <a href="home-v3.html">Home v3</a> </li>
-        </ul>
+        <a th:href="@{/index}">Home Page</a>
       </li>
-      <li class="menu-item menu-item-has-children">
-        <a href="#">Blog</a>
-        <ul class="sub-menu">
-          <li class="menu-item menu-item-has-children">
-            <a href="blog-grid.html">Blog Archive</a>
-            <ul class="sub-menu">
-              <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
-              <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
-              <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
-            </ul>
-          </li>
-          <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
-        </ul>
-      </li>
+      
       <li class="menu-item menu-item-has-children">
         <a href="#">Pages</a>
             <ul class="sub-menu">
@@ -276,8 +258,7 @@
                 <li class="menu-item"> <a th:href="@{/loginOrigin}">Login</a> </li>
                 <li class="menu-item"> <a th:href="@{/register}">Sign Up</a> </li>
                 <li class="menu-item"> <a th:href="@{/checkout}">Checkout</a> </li>
-                <li class="menu-item"> <a th:href="@{/cart}">Cart</a> </li>
-                <li class="menu-item"> <a th:href="@{/wishlist}">Wish List</a> </li>
+                <li class="menu-item"> <a th:href="@{/cart}">Cart</a> </li> 
                 <li class="menu-item"> <a th:href="@{/legal}">Legal</a> </li>
                 <li class="menu-item"> <a th:href="@{/error}">Error 404</a> </li>
               </ul>
@@ -285,10 +266,7 @@
       <li class="menu-item menu-item-has-children">
         <a href="#">Shop Pages</a>
         <ul class="sub-menu">
-          <li class="menu-item"> <a href="shop-v1.html"> Shop v1 (Default) </a> </li>
-          <li class="menu-item"> <a href="shop-v2.html"> Shop v2 (Full Width) </a> </li>
-          <li class="menu-item"> <a href="shop-v3.html"> Shop v3 (No Sidebar) </a> </li>
-          <li class="menu-item"> <a href="shop-v4.html"> Shop v4 (List view) </a> </li>
+          <li class="menu-item"> <a th:href="@{/shop-v1}"> Shop </a> </li>
         </ul>
       </li>
       <li class="menu-item"> <a th:href="@{/contact-us}">Contact Us</a> </li>
@@ -331,7 +309,7 @@
       <div class="container">
         <nav class="navbar">
           <!-- Logo -->
-          <a class="navbar-brand" href="index.html"> <img src="assets/img/logo.png" alt="logo"> </a>
+          <a class="navbar-brand" th:href="@{/index}"> <img src="assets/img/logo.png" alt="logo"> </a>
 
           <!-- Search Form -->
           <div class="andro_search-adv">
@@ -391,9 +369,9 @@
           <div class="andro_header-controls">
 
             <ul class="andro_header-controls-inner">
-              <li class="andro_header-favorites"> <a href="wishlist.html" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
+              <li class="andro_header-favorites"> <a th:href="@{/wishlist}" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
               <li class="andro_header-cart">
-                <a href="cart.html" title="Your Cart">
+                <a th:href="@{/cart}" title="Your Cart">
                   <i class="flaticon-shopping-basket"></i>
                   <div class="andro_header-cart-content">
                     <span>9 Packet</span>
@@ -425,27 +403,10 @@
           <!-- Menu -->
           <ul class="navbar-nav">
             <li class="menu-item menu-item-has-children">
-              <a href="#">Home Pages</a>
-              <ul class="sub-menu">
-                <li class="menu-item"> <a href="index.html">Home v1</a> </li>
-                <li class="menu-item"> <a href="home-v2.html">Home v2</a> </li>
-                <li class="menu-item"> <a href="home-v3.html">Home v3</a> </li>
-              </ul>
+              <a th:href="@{/index}">Home Page</a>
+              
             </li>
-            <li class="menu-item menu-item-has-children">
-              <a href="#">Blog</a>
-              <ul class="sub-menu">
-                <li class="menu-item menu-item-has-children">
-                  <a href="blog-grid.html">Blog Archive</a>
-                  <ul class="sub-menu">
-                    <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
-                    <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
-                    <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
-                  </ul>
-                </li>
-                <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
-              </ul>
-            </li>
+            
             <li class="menu-item menu-item-has-children">
               <a href="#">Pages</a>
             <ul class="sub-menu">
@@ -453,14 +414,13 @@
                 <li class="menu-item"> <a th:href="@{/loginOrigin}">Login</a> </li>
                 <li class="menu-item"> <a th:href="@{/register}">Sign Up</a> </li>
                 <li class="menu-item"> <a th:href="@{/checkout}">Checkout</a> </li>
-                <li class="menu-item"> <a th:href="@{/cart}">Cart</a> </li>
-                <li class="menu-item"> <a th:href="@{/wishlist}">Wish List</a> </li>
+                <li class="menu-item"> <a th:href="@{/cart}">Cart</a> </li> 
                 <li class="menu-item"> <a th:href="@{/legal}">Legal</a> </li>
                 <li class="menu-item"> <a th:href="@{/error}">Error 404</a> </li>
               </ul>
             </li>
             <li class="menu-item menu-item-has-children mega-menu-wrapper">
-              <a href="shop-v1.html">Shop</a>
+              <a th:href="@{/shop-v1}">Shop</a>
               <ul class="sub-menu">
                 <li>
                   <div class="container">
@@ -478,15 +438,13 @@
                       <div class="offset-lg-1 col-lg-3">
                         <div class="mega-menu-item">
                           <h6>Shop Pages</h6>
-                          <a th:href="@{/shop-v1}">Shop</a>>
+                          <a th:href="@{/shop-v1}">Shop</a>
                         </div>
                       </div>
                       <div class="col-lg-4">
                         <div class="mega-menu-item">
                           <h6>Product Details Pages</h6>
-                          <a href="product-single.html">Product Details v1</a>
-                          <a href="product-single-v2.html">Product Details v2</a>
-                          <a href="#" class="coming-soon">Product Details v3 <span>Coming Soon</span></a>
+                          <a th:href="@{/product-single}">Product Details</a>
                         </div>
                       </div>
                     </div>
@@ -1029,7 +987,6 @@
             <h5 class="widget-title">Information</h5>
             <ul>
               <li> <a th:href="@{/index}">Home</a> </li>
-              <li> <a th:href="@{/blog-grid}">Blog</a> </li>
               <li> <a th:href="@{/about-us}">About Us</a> </li>
               <li> <a th:href="@{/shop-v1}">Shop</a> </li>
               <li> <a th:href="@{/contact-us}">Contact Us</a> </li>
@@ -1048,11 +1005,11 @@
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
             <h5 class="widget-title">Others</h5>
             <ul>
-              <li> <a href="checkout.html">Checkout</a> </li>
-              <li> <a href="cart.html">Cart</a> </li>
-              <li> <a href="product-single.html">Product</a> </li>
-              <li> <a href="shop-v1.html">Shop</a> </li>
-              <li> <a href="legal.html">Legal</a> </li>
+              <li> <a th:href="@{/checkout}">Checkout</a> </li>
+              <li> <a th:href="@{/cart}">Cart</a> </li>
+              <li> <a th:href="@{/product-single}">Product</a> </li>
+              <li> <a th:href="@{/shop-v1}">Shop</a> </li>
+              <li> <a th:href="@{/legal}">Legal</a> </li>
             </ul>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 footer-widget">
