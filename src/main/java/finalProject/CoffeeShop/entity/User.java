@@ -39,14 +39,6 @@ public class User {
 	@Column(name="city")
 	private String city;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinTable(
-			name="review",
-			joinColumns = @JoinColumn(name="id_user"),
-			inverseJoinColumns = @JoinColumn(name="id_product")
-			)
-	private List<ProductDetail> productDetail;
-	
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
@@ -78,7 +70,6 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.city = city;
-		this.productDetail = productDetail;
 		this.productListCart = productListCart;
 		this.listBill = listBill;
 		this.account = account;
@@ -110,14 +101,6 @@ public class User {
 
 	public void setProductListCart(List<ProductDetail> productListCart) {
 		this.productListCart = productListCart;
-	}
-
-	public List<ProductDetail> getProductDetail() {
-		return productDetail;
-	}
-
-	public void setProductDetail(List<ProductDetail> productDetail) {
-		this.productDetail = productDetail;
 	}
 
 	public int getId() {

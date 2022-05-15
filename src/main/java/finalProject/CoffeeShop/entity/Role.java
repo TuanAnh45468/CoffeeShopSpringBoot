@@ -12,65 +12,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name="role")
 public class Role {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
-	
-	@Column(name="info")
-	private String info;
-	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinTable(
-			name="acc_role",
-			joinColumns = @JoinColumn(name="id_role"),
-			inverseJoinColumns = @JoinColumn(name="id_acc")
-			)
-	private List<Account> accountList;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
 	
 	public Role() {
 		
 	}
-
-	public Role(int id, String info) {
-		super();
-		this.id = id;
-		this.info = info;
-	}
 	
-	public List<Account> getAccountList() {
-		return accountList;
+	public Role(String name) {
+		super();
+		this.name = name;
 	}
 
-	public void setAccountList(List<Account> accountList) {
-		this.accountList = accountList;
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getInfo() {
-		return info;
+	public String getName() {
+		return name;
 	}
 
-	public void setInfo(String info) {
-		this.info = info;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", info=" + info + "]";
-	}
+	
 	
 	
 }
