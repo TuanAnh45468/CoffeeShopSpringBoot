@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import finalProject.CoffeeShop.dao.ProductDetailRepository;
-import finalProject.CoffeeShop.entity.Account;
 import finalProject.CoffeeShop.entity.ProductDetail;
 
 @Service

@@ -1,10 +1,12 @@
 package finalProject.CoffeeShop.entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,11 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="user")
+@Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
 	@Id
@@ -27,73 +29,52 @@ public class User {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="email")
 	private String email;
 	
-	@Column(name="phone_number")
-	private String phoneNumber;
+	private String password;
 	
-	@Column(name="address")
-	private String address;
-	
-	@Column(name="city")
-	private String city;
-	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
-			name="review",
-			joinColumns = @JoinColumn(name="id_user"),
-			inverseJoinColumns = @JoinColumn(name="id_product")
+			name = "users_roles",
+			joinColumns = @JoinColumn(
+		            name = "user_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(
+				            name = "role_id", referencedColumnName = "id")
 			)
-	private List<ProductDetail> productDetail;
-	
-	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinTable(
-			name="cart_product",
-			joinColumns = @JoinColumn(name= "id_user"),
-			inverseJoinColumns = @JoinColumn(name="id_product")
-			)
-	private List<ProductDetail> productListCart;
+	private Collection<Role> roles;
 	
 	@OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	private List<ListBill> listBill;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="id_acc")
-	private Account account;
+	
 	
 	public User() {
 		
 	}
 	
-
-	public User(int id, String name, String email, String phoneNumber, String address, String city,
-			List<ProductDetail> productDetail, List<ProductDetail> productListCart, List<ListBill> listBill,
-			Account account) {
+	public User(String name, String email, String password, Collection<Role> roles) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.address = address;
-		this.city = city;
-		this.productDetail = productDetail;
-		this.productListCart = productListCart;
+		this.password = password;
+		this.roles = roles;
+	}
+	
+	public User(String name, String email, String password, Collection<Role> roles, List<ListBill> listBill) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
 		this.listBill = listBill;
-		this.account = account;
 	}
 
-
-
-
-
-	public Account getAccount() {
-		return account;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<ListBill> getListBill() {
@@ -102,22 +83,6 @@ public class User {
 
 	public void setListBill(List<ListBill> listBill) {
 		this.listBill = listBill;
-	}
-
-	public List<ProductDetail> getProductListCart() {
-		return productListCart;
-	}
-
-	public void setProductListCart(List<ProductDetail> productListCart) {
-		this.productListCart = productListCart;
-	}
-
-	public List<ProductDetail> getProductDetail() {
-		return productDetail;
-	}
-
-	public void setProductDetail(List<ProductDetail> productDetail) {
-		this.productDetail = productDetail;
 	}
 
 	public int getId() {
@@ -144,35 +109,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public Collection<Role> getRoles() {
+		return roles;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
 	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address="
-				+ address + ", city=" + city + "]";
-	}
-	
 	
 }
