@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr" >
+<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,7 @@
   <!-- Coffeez Style sheet -->
   <link rel="stylesheet" th:href="@{assets/css/style.css}">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" th:href="@{favicon.ico}">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/assets/img/favicon.ico}">
 
 </head>
 
@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="qty-outter">
-                      <a href="product-single.html" class="andro_btn-custom">Buy Now</a>
+                      <a th:href="@{/product-single}" class="andro_btn-custom">Buy Now</a>
                       <div class="qty">
                         <span class="qty-subtract"><i class="fa fa-minus"></i></span>
                         <input type="text" name="qty" value="1">
@@ -244,29 +244,14 @@
 
   <!-- Aside (Mobile Navigation) -->
   <aside class="andro_aside andro_aside-left">
-    <a class="navbar-brand" href="index.html"> <img src="assets/img/logo.png" alt="logo"> </a>
+    <a class="navbar-brand" th:href="@{/index}"> <img src="assets/img/logo.png" alt="logo"> </a>
 
     <ul>
       <li class="menu-item menu-item-has-children">
-        <a href="#">Home Pages</a>
-        <ul class="sub-menu">
-          <li class="menu-item"> <a th:href="@{/index}">Home</a> </li>
-        </ul>
+        <a th:href="@{/index}">Home Page</a>
+        
       </li>
-      <li class="menu-item menu-item-has-children">
-        <a href="#">Blog</a>
-        <ul class="sub-menu">
-          <li class="menu-item menu-item-has-children">
-            <a href="blog-grid.html">Blog Archive</a>
-            <ul class="sub-menu">
-              <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
-              <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
-              <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
-            </ul>
-          </li>
-          <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
-        </ul>
-      </li>
+      
       <li class="menu-item menu-item-has-children">
         <a href="#">Pages</a>
         <ul class="sub-menu">
@@ -326,7 +311,7 @@
       <div class="container">
         <nav class="navbar">
           <!-- Logo -->
-          <a class="navbar-brand" href="index.html"> <img src="assets/img/logo.png" alt="logo"> </a>
+          <a class="navbar-brand" th:href="@{/index}"> <img src="assets/img/logo.png" alt="logo"> </a>
 
           <!-- Search Form -->
           <div class="andro_search-adv">
@@ -386,9 +371,9 @@
           <div class="andro_header-controls">
 
             <ul class="andro_header-controls-inner">
-              <li class="andro_header-favorites"> <a href="wishlist.html" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
+              <li class="andro_header-favorites"> <a th:href="@{/wishlist}" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
               <li class="andro_header-cart">
-                <a href="cart.html" title="Your Cart">
+                <a th:href="@{/cart}" title="Your Cart">
                   <i class="flaticon-shopping-basket"></i>
                   <div class="andro_header-cart-content">
                     <span>9 Packet</span>
@@ -420,25 +405,9 @@
           <!-- Menu -->
           <ul class="navbar-nav">
             <li class="menu-item menu-item-has-children">
-              <a href="#">Home Pages</a>
-              <ul class="sub-menu">
-                <li class="menu-item"> <a th:href="@{/index}">Home</a> </li>
-              </ul>
+              <a th:href="@{/index}">Home Page</a>
             </li>
-            <li class="menu-item menu-item-has-children">
-              <a href="#">Blog</a>
-              <ul class="sub-menu">
-                <li class="menu-item menu-item-has-children">
-                  <a href="blog-grid.html">Blog Archive</a>
-                  <ul class="sub-menu">
-                    <li class="menu-item"> <a href="blog-grid.html">Grid View</a> </li>
-                    <li class="menu-item"> <a href="blog-list.html">List View</a> </li>
-                    <li class="menu-item"> <a href="blog-masonry.html">Masonry View</a> </li>
-                  </ul>
-                </li>
-                <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
-              </ul>
-            </li>
+            
             <li class="menu-item menu-item-has-children">
               <a href="#">Pages</a>
               <ul class="sub-menu">
@@ -446,8 +415,7 @@
                 <li class="menu-item"> <a th:href="@{/loginOrigin}">Login</a> </li>
                 <li class="menu-item"> <a th:href="@{/register}">Sign Up</a> </li>
                 <li class="menu-item"> <a th:href="@{/checkout}">Checkout</a> </li>
-                <li class="menu-item"> <a th:href="@{/cart}">Cart</a> </li>
-                <li class="menu-item"> <a th:href="@{/wishlist}">Wish List</a> </li>
+                <li class="menu-item"> <a th:href="@{/cart}">Cart</a> </li> 
                 <li class="menu-item"> <a th:href="@{/legal}">Legal</a> </li>
                 <li class="menu-item"> <a th:href="@{/error}">Error 404</a> </li>
               </ul>
@@ -524,20 +492,10 @@
 
           <h2>Log in</h2>
 
-          <form th:action="@{/loginOrigin}" method="post">
-          
-               <!-- error message -->
-		     <div th:if="${param.error}">
-		      <div class="alert alert-danger">Invalid userName or password.</div>
-		     </div>
-		     
-		          <!-- logout message -->
-		     <div th:if="${param.logout}">
-		      <div class="alert alert-info">You have been logged out.</div>
-		     </div>
+          <form method="post">
 
             <div class="form-group">
-              <input type="email" class="form-control" placeholder="Email" name="email" value="">
+              <input type="text" class="form-control" placeholder="Username" name="username" value="">
             </div>
             <div class="form-group">
               <input type="password" class="form-control" placeholder="Password" name="password" value="">
@@ -631,7 +589,6 @@
             <h5 class="widget-title">Information</h5>
             <ul>
               <li> <a th:href="@{/index}">Home</a> </li>
-              <li> <a th:href="@{/blog-grid}">Blog</a> </li>
               <li> <a th:href="@{/about-us}">About Us</a> </li>
               <li> <a th:href="@{/shop-v1}">Shop</a> </li>
               <li> <a th:href="@{/contact-us}">Contact Us</a> </li>
@@ -651,7 +608,6 @@
             <h5 class="widget-title">Others</h5>
            <ul>
               <li> <a th:href="@{/index}">Home</a> </li>
-              <li> <a th:href="@{/blog-grid}">Blog</a> </li>
               <li> <a th:href="@{/about-us}">About Us</a> </li>
               <li> <a th:href="@{/shop-v1}">Shop</a> </li>
               <li> <a th:href="@{/contact-us}">Contact Us</a> </li>
