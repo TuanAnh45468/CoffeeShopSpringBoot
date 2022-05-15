@@ -21,7 +21,7 @@
   <!-- Coffeez Style sheet -->
   <link rel="stylesheet" th:href="@{assets/css/style.css}">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/assets/img/favicon.ico}">
 
 </head>
 
@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="qty-outter">
-                      <a href="product-single.html" class="andro_btn-custom">Buy Now</a>
+                      <a th:href="@{/product-single}" class="andro_btn-custom">Buy Now</a>
                       <div class="qty">
                         <span class="qty-subtract"><i class="fa fa-minus"></i></span>
                         <input type="text" name="qty" value="1">
@@ -244,29 +244,14 @@
 
   <!-- Aside (Mobile Navigation) -->
   <aside class="andro_aside andro_aside-left">
-    <a class="navbar-brand" href="index.html"> <img src="assets/img/logo.png" alt="logo"> </a>
+    <a class="navbar-brand" th:href="@{/index}"> <img src="assets/img/logo.png" alt="logo"> </a>
 
     <ul>
       <li class="menu-item menu-item-has-children">
-        <a href="#">Home Pages</a>
-        <ul class="sub-menu">
-          <li class="menu-item"> <a th:href="@{/index}">Home</a> </li>
-        </ul>
+        <a th:href="@{/index}">Home Page</a>
+        
       </li>
-      <li class="menu-item menu-item-has-children">
-        <a href="#">Blog</a>
-        <ul class="sub-menu">
-          <li class="menu-item menu-item-has-children">
-            <a href="blog-grid.html">Blog Archive</a>
-            <ul class="sub-menu">
-              <li class="menu-item"> <a th:href="@{blog-grid}">Grid View</a> </li>
-              <li class="menu-item"> <a th:href="@{/blog-list}">List View</a> </li>
-              <li class="menu-item"> <a th:href="@{/blog-masonry}">Masonry View</a> </li>
-            </ul>
-          </li>
-          <li class="menu-item"> <a href="post-single.html">Blog Single</a> </li>
-        </ul>
-      </li>
+      
       <li class="menu-item menu-item-has-children">
         <a href="#">Pages</a>
         <ul class="sub-menu">
@@ -283,7 +268,7 @@
       <li class="menu-item menu-item-has-children">
          <a href="#">Shop Pages</a>
          <ul class="sub-menu">
-           <li class="menu-item"> <a href="@{/shop-v1}"> Shop</a> </li>
+           <li class="menu-item"> <a th:href="@{//shop-v1}"> Shop</a> </li>
          </ul>
        </li>
       <li class="menu-item"> <a th:href="@{/contact-us}">Contact Us</a> </li>
@@ -326,7 +311,7 @@
       <div class="container">
         <nav class="navbar">
           <!-- Logo -->
-          <a class="navbar-brand" href="index.html"> <img src="assets/img/logo.png" alt="logo"> </a>
+          <a class="navbar-brand" th:href="@{/index}"> <img src="assets/img/logo.png" alt="logo"> </a>
 
           <!-- Search Form -->
           <div class="andro_search-adv">
@@ -386,9 +371,9 @@
           <div class="andro_header-controls">
 
             <ul class="andro_header-controls-inner">
-              <li class="andro_header-favorites"> <a href="wishlist.html" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
+              <li class="andro_header-favorites"> <a th:href="@{/wishlist}" title="Your Wishlist"> <i class="flaticon-like"></i> </a> </li>
               <li class="andro_header-cart">
-                <a href="cart.html" title="Your Cart">
+                <a th:href="@{/cart}" title="Your Cart">
                   <i class="flaticon-shopping-basket"></i>
                   <div class="andro_header-cart-content">
                     <span>9 Packet</span>
@@ -420,25 +405,9 @@
           <!-- Menu -->
           <ul class="navbar-nav">
             <li class="menu-item menu-item-has-children">
-              <a href="#">Home Pages</a>
-              <ul class="sub-menu">
-                <li class="menu-item"> <a th:href="@{/index}">Home</a> </li>
-              </ul>
+              <a th:href="@{/index}">Home Page</a>
             </li>
-            <li class="menu-item menu-item-has-children">
-              <a href="#">Blog</a>
-              <ul class="sub-menu">
-                <li class="menu-item menu-item-has-children">
-                  <a href="blog-grid.html">Blog Archive</a>
-                  <ul class="sub-menu">
-                    <li class="menu-item"> <a th:href="@{/blog-grid}">Grid View</a> </li>
-                    <li class="menu-item"> <a th:href="@{/blog-list}">List View</a> </li>
-                    <li class="menu-item"> <a th:href="@{/blog-masonry}">Masonry View</a> </li>
-                  </ul>
-                </li>
-                <li class="menu-item"> <a th:href="@{/post-single}">Blog Single</a> </li>
-              </ul>
-            </li>
+            
             <li class="menu-item menu-item-has-children">
               <a href="#">Pages</a>
 		           <ul class="sub-menu">
@@ -477,9 +446,7 @@
                       <div class="col-lg-4">
                         <div class="mega-menu-item">
                           <h6>Product Details Pages</h6>
-                          <a href="product-single.html">Product Details v1</a>
-                          <a href="product-single-v2.html">Product Details v2</a>
-                          <a href="#" class="coming-soon">Product Details v3 <span>Coming Soon</span></a>
+                          <a th:href="@{/product-single}">Product Details</a>
                         </div>
                       </div>
                     </div>
@@ -537,7 +504,7 @@
           <!-- Pagination Start -->
           <div class="andro_single-pagination">
             <div class="andro_single-pagination-item andro_single-pagination-prev">
-              <a href="product-single.html">
+              <a th:href="@{/product-single}">
                 <div class="andro_single-pagination-thumb">
                   <img src="assets/img/products/9.png" alt="product">
                 </div>
@@ -548,7 +515,7 @@
               </a>
             </div>
             <div class="andro_single-pagination-item andro_single-pagination-next">
-              <a href="product-single-v2.html">
+              <a th:href="@{/product-single-v2}">
                 <div class="andro_single-pagination-thumb">
                   <img src="assets/img/products/15.png" alt="product">
                 </div>
@@ -617,7 +584,7 @@
               </div>
 
               <div class="qty-outter">
-                <a href="product-single.html" class="andro_btn-custom">Buy Now</a>
+                <a th:href="@{/product-single}" class="andro_btn-custom">Buy Now</a>
                 <div class="qty">
                   <span class="qty-subtract"><i class="fa fa-minus"></i></span>
                   <input type="text" name="qty" value="1">
@@ -815,10 +782,10 @@
             <span>Featured</span>
           </div>
           <div class="andro_product-thumb">
-            <a href="product-single.html"><img src="assets/img/products/2.png" alt="product"></a>
+            <a th:href="@{/product-single}"><img src="assets/img/products/2.png" alt="product"></a>
           </div>
           <div class="andro_product-body">
-            <h5 class="andro_product-title"> <a href="product-single.html">Cappucino</a> </h5>
+            <h5 class="andro_product-title"> <a th:href="@{/product-single}">Cappucino</a> </h5>
             <div class="andro_product-price">
               <span>19$</span>
               <span>29$</span>
@@ -851,10 +818,10 @@
             <span>Featured</span>
           </div>
           <div class="andro_product-thumb">
-            <a href="product-single.html"><img src="assets/img/products/6.png" alt="product"></a>
+            <a th:href="@{/product-single}"><img src="assets/img/products/6.png" alt="product"></a>
           </div>
           <div class="andro_product-body">
-            <h5 class="andro_product-title"> <a href="product-single.html"> Mixed Sorts</a> </h5>
+            <h5 class="andro_product-title"> <a th:href="@{/product-single}"> Mixed Sorts</a> </h5>
             <div class="andro_product-price">
               <span>19$</span>
               <span>29$</span>
@@ -886,10 +853,10 @@
             20% Off
           </div>
           <div class="andro_product-thumb">
-            <a href="product-single.html"><img src="assets/img/products/4.png" alt="product"></a>
+            <a th:href="@{/product-single}"><img src="assets/img/products/4.png" alt="product"></a>
           </div>
           <div class="andro_product-body">
-            <h5 class="andro_product-title"> <a href="product-single.html">Arabica Green</a> </h5>
+            <h5 class="andro_product-title"> <a th:href="@{/product-single}">Arabica Green</a> </h5>
             <div class="andro_product-price">
               <span>8$</span>
               <span>14$</span>
@@ -922,10 +889,10 @@
             <span>Featured</span>
           </div>
           <div class="andro_product-thumb">
-            <a href="product-single.html"><img src="assets/img/products/2.png" alt="product"></a>
+            <a th:href="@{/product-single}"><img src="assets/img/products/2.png" alt="product"></a>
           </div>
           <div class="andro_product-body">
-            <h5 class="andro_product-title"> <a href="product-single.html">Cappucino</a> </h5>
+            <h5 class="andro_product-title"> <a th:href="@{/product-single}">Cappucino</a> </h5>
             <div class="andro_product-price">
               <span>19$</span>
               <span>29$</span>
@@ -958,10 +925,10 @@
             <span>Featured</span>
           </div>
           <div class="andro_product-thumb">
-            <a href="product-single.html"><img src="assets/img/products/6.png" alt="product"></a>
+            <a th:href="@{/product-single}"><img src="assets/img/products/6.png" alt="product"></a>
           </div>
           <div class="andro_product-body">
-            <h5 class="andro_product-title"> <a href="product-single.html"> Mixed Sorts</a> </h5>
+            <h5 class="andro_product-title"> <a th:href="@{/product-single}"> Mixed Sorts</a> </h5>
             <div class="andro_product-price">
               <span>11$</span>
             </div>
@@ -992,10 +959,10 @@
             20% Off
           </div>
           <div class="andro_product-thumb">
-            <a href="product-single.html"><img src="assets/img/products/4.png" alt="product"></a>
+            <a th:href="@{/product-single}"><img src="assets/img/products/4.png" alt="product"></a>
           </div>
           <div class="andro_product-body">
-            <h5 class="andro_product-title"> <a href="product-single.html">Arabica Green</a> </h5>
+            <h5 class="andro_product-title"> <a th:href="@{/product-single}">Arabica Green</a> </h5>
             <div class="andro_product-price">
               <span>8$</span>
               <span>14$</span>
@@ -1094,7 +1061,6 @@
             <h5 class="widget-title">Information</h5>
          <ul>
               <li> <a th:href="@{/index}">Home</a> </li>
-              <li> <a th:href="@{/blog-grid}">Blog</a> </li>
               <li> <a th:href="@{/about-us}">About Us</a> </li>
               <li> <a th:href="@{/shop-v1}">Shop</a> </li>
               <li> <a th:href="@{/contact-us}">Contact Us</a> </li>
@@ -1113,11 +1079,11 @@
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 footer-widget">
             <h5 class="widget-title">Others</h5>
             <ul>
-              <li> <a href="checkout.html">Checkout</a> </li>
-              <li> <a href="cart.html">Cart</a> </li>
-              <li> <a href="product-single.html">Product</a> </li>
-              <li> <a href="shop-v1.html">Shop</a> </li>
-              <li> <a href="legal.html">Legal</a> </li>
+              <li> <a th:href="@{/checkout}">Checkout</a> </li>
+              <li> <a th:href="@{/cart}">Cart</a> </li>
+              <li> <a th:href="@{/product-single}">Product</a> </li>
+              <li> <a th:href="@{/shop-v1}">Shop</a> </li>
+              <li> <a th:href="@{/legal}">Legal</a> </li>
             </ul>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 footer-widget">
