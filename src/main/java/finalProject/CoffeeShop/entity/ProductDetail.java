@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,34 +51,51 @@ public class ProductDetail {
 	@Column(name="image")
 	private String image;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="review",
-			joinColumns = @JoinColumn(name= "id_product"),
-			inverseJoinColumns = @JoinColumn(name="id_user")
+			joinColumns = @JoinColumn(name= "id_product", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name="id_user", referencedColumnName = "id")
 			)
 	private List<User> userList;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="cart_product",
-			joinColumns = @JoinColumn(name= "id_product"),
-			inverseJoinColumns = @JoinColumn(name="id_user")
+			joinColumns = @JoinColumn(name= "id_product", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name="id_user", referencedColumnName = "id")
 			)
 	private List<User> userListCart;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="id_cate")
 	private Category category;
 	
 	public ProductDetail() {
 		
 	}
+	
+	
 
-	public ProductDetail(int id, int cateId, String name, String brand, String breed, String weight, int quantity,
-			String description, String details, double price, String image) {
-
+	public ProductDetail(String name, String brand, String breed, String weight, int quantity, String description,
+			String details, double price, String image, List<User> userList, List<User> userListCart,
+			Category category) {
+		super();
+		this.name = name;
+		this.brand = brand;
+		this.breed = breed;
+		this.weight = weight;
+		this.quantity = quantity;
+		this.description = description;
+		this.details = details;
+		this.price = price;
+		this.image = image;
+		this.userList = userList;
+		this.userListCart = userListCart;
+		this.category = category;
 	}
+
+
 
 	public List<User> getUserList() {
 		return userList;
@@ -182,13 +200,7 @@ public class ProductDetail {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-	@Override
-	public String toString() {
-		return "ProductDetail [id=" + id + ", name=" + name + ", brand=" + brand + ", breed=" + breed + ", weight="
-				+ weight + ", quantity=" + quantity + ", description=" + description + ", details=" + details
-				+ ", price=" + price + ", image=" + image + ", userList=" + userList + ", userListCart=" + userListCart
-				+ ", category=" + category + "]";
-	}
+	
+	
 	
 }

@@ -3,6 +3,7 @@ package finalProject.CoffeeShop.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,10 +39,9 @@ public class AdditionalInfo {
 		
 	}
 	
-	public AdditionalInfo(int id, int productId, String country, String region, String method, String species,
+	public AdditionalInfo(String country, String region, String method, String species,
 			String roast) {
 		super();
-		this.id = id;
 		this.country = country;
 		this.region = region;
 		this.method = method;
@@ -51,7 +51,7 @@ public class AdditionalInfo {
 	
 
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="id_product")
 	private ProductDetail productInfo;
 
@@ -109,12 +109,6 @@ public class AdditionalInfo {
 
 	public void setRoast(String roast) {
 		this.roast = roast;
-	}
-
-	@Override
-	public String toString() {
-		return "AdditionalInfo [id=" + id + ", country=" + country + ", region=" + region
-				+ ", method=" + method + ", species=" + species + ", roast=" + roast + "]";
 	}
 	
 	
