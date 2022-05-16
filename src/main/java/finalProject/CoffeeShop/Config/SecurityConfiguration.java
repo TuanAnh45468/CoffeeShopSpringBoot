@@ -12,14 +12,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import finalProject.CoffeeShop.service.CustomUserDetailService;
 import finalProject.CoffeeShop.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
+//	@Autowired
+//	private UserService userService;
+	
 	@Autowired
-	private UserService userService;
+	private CustomUserDetailService customUserDetailService;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -28,13 +32,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated()
+		http.authorizeRequests().antMatchers("/login").permitAll().anyRequest().authenticated()
 				.and()
-				.formLogin().loginPage("/loginOrigin").permitAll()
+				.formLogin().loginPage("/login").permitAll().failureUrl("/login?error=true").defaultSuccessUrl("/about-us").usernameParameter("email").passwordParameter("password")
 				.and()
 				.logout()
 				.invalidateHttpSession(true).clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/loginOrigin?logout")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
 				.permitAll();
 	}
 	
@@ -46,16 +50,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 		"/assets/vids/**", "/templates/**",  "/register**");
     }
 	
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userService);
-        auth.setPasswordEncoder(passwordEncoder());
-        return auth;
-    }
+//    @Bean
+//    public DaoAuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+//        auth.setUserDetailsService(userService);
+//        auth.setPasswordEncoder(passwordEncoder());
+//        return auth;
+//    }
 	
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+        auth.userDetailsService(customUserDetailService);
     }
 }

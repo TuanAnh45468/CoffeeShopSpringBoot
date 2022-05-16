@@ -21,6 +21,7 @@ import finalProject.CoffeeShop.entity.User;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
 	private UserRepository userRepository;
 	
 	@Autowired
@@ -29,47 +30,22 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	public UserServiceImpl(UserRepository theUserRepository) {
 		super();
-		userRepository = theUserRepository;
+		this.userRepository = theUserRepository;
 	}
 	
 	@Override
-	public List<User> findAll() {
+	public User save(UserRegistrationDto registrationDto) {
 		// TODO Auto-generated method stub
-		return userRepository.findAll();
+		User user = new User(registrationDto.getName(), 
+				registrationDto.getEmail(),
+				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
+		return userRepository.save(user);
 	}
 
 	@Override
-	public User findById(int theId) {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		Optional<User> result = userRepository.findById(theId);
-		
-		User user = null;
-		
-		if(result.isPresent()) {
-			user = result.get();
-		} else {
-			throw new RuntimeException("Did not find the account " + theId);
-		}
-		
-		return user;
-	}
-
-//	@Override
-//	public void save(User theUser) {
-//		// TODO Auto-generated method stub
-//		userRepository.save(theUser);
-//	}
-
-	@Override
-	public void deleteById(int theId) {
-		// TODO Auto-generated method stub
-		userRepository.deleteById(theId);
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		User user = userRepository.findByEmail(username);
+		User user = userRepository.findByEmail(email);
 		if(user == null) {
 			throw new UsernameNotFoundException("Invalid username or password");
 		}
@@ -80,13 +56,6 @@ public class UserServiceImpl implements UserService {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
 
-	@Override
-	public User save(UserRegistrationDto registrationDto) {
-		// TODO Auto-generated method stub
-		User user = new User(registrationDto.getName(), 
-				registrationDto.getEmail(),
-				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
-		return userRepository.save(user);
-	}
+
 
 }

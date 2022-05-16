@@ -41,7 +41,7 @@ public class User {
 			inverseJoinColumns = @JoinColumn(
 				            name = "role_id", referencedColumnName = "id")
 			)
-	private Collection<Role> roles;
+	private List<Role> roles;
 	
 	@OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	private List<ListBill> listBill;
@@ -52,7 +52,8 @@ public class User {
 		
 	}
 	
-	public User(String name, String email, String password, Collection<Role> roles) {
+	
+	public User(String name, String email, String password, List<Role> roles) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -60,15 +61,6 @@ public class User {
 		this.roles = roles;
 	}
 	
-	public User(String name, String email, String password, Collection<Role> roles, List<ListBill> listBill) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.roles = roles;
-		this.listBill = listBill;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -109,12 +101,15 @@ public class User {
 		this.email = email;
 	}
 
-	public Collection<Role> getRoles() {
+
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Collection<Role> roles) {
+
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+	
 	
 }
