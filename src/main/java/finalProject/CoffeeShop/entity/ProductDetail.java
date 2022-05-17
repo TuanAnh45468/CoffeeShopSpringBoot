@@ -51,7 +51,7 @@ public class ProductDetail {
 	@Column(name="image")
 	private String image;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="review",
 			joinColumns = @JoinColumn(name= "id_product", referencedColumnName = "id"),
@@ -59,7 +59,7 @@ public class ProductDetail {
 			)
 	private List<User> userList;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="cart_product",
 			joinColumns = @JoinColumn(name= "id_product", referencedColumnName = "id"),
