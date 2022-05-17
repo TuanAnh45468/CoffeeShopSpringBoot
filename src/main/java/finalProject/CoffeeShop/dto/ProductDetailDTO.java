@@ -2,9 +2,6 @@ package finalProject.CoffeeShop.dto;
 
 import java.util.List;
 
-import finalProject.CoffeeShop.entity.Category;
-import finalProject.CoffeeShop.entity.User;
-
 public class ProductDetailDTO {
 	
 	private int id;	
