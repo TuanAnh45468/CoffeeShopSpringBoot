@@ -28,25 +28,22 @@ import finalProject.CoffeeShop.service.ProductDetailService;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	public static String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/assets/img";
-	
 	public AdminController() {
 		
 	}
 	
-	@Autowired
 	ProductDetailService productDetailService;
 	
-//	public AdminController(ProductDetailService productDetailService) {
-//		this.productDetailService = productDetailService;
-//	}
+	public AdminController(ProductDetailService productDetailService) {
+		this.productDetailService = productDetailService;
+	}
 	
-	@Autowired
+	
 	CategoryService categoryService;
 	
-//	public AdminController(CategoryService categoryService) {
-//		this.categoryService = categoryService;
-//	}
+	public AdminController(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 	
 	@GetMapping("/home")
 	public String adminHomepage() {
@@ -74,40 +71,19 @@ public class AdminController {
 	
 	@GetMapping("/product/create")
 	public String showAddProduct(Model model) {
-		model.addAttribute("productDTO", new ProductDetailDTO());
+		//ProductDetail theProductDetail = new ProductDetail();
 		
-		List<Category> categoryList = categoryService.findAll();
-		model.addAttribute("categories", categoryList);
+		model.addAttribute("productDetail", new ProductDetail());
+		
+//		List<Category> categoryList = categoryService.findAll();
+//		model.addAttribute("categories", categoryList);
 		return "product-create";
 	}
 	
 	@PostMapping("/product/save")
-	public String createProduct(@ModelAttribute("productDTO") ProductDetailDTO productDetailDTO,
-			@RequestParam("productImage") MultipartFile file,
-			@RequestParam("imgName") String imgName) throws IOException {
-		
-		ProductDetail productDetail = new ProductDetail();
-		productDetail.setId(productDetailDTO.getId());
-		productDetail.setName(productDetailDTO.getName());
-		productDetail.setDescription(productDetailDTO.getDescription());
-		productDetail.setCategory(categoryService.findById(productDetailDTO.getCategoryID()));
-		productDetail.setBrand(productDetailDTO.getBrand());
-		productDetail.setBreed(productDetailDTO.getBreed());
-		productDetail.setWeight(productDetailDTO.getWeight());
-		productDetail.setQuantity(productDetailDTO.getQuantity());
-		productDetail.setPrice(productDetailDTO.getPrice());
-		String imageUUID;
-		if(!file.isEmpty()) {
-			imageUUID = file.getOriginalFilename();
-			Path fileNameAndPath = Paths.get(uploadDir, imageUUID);
-			Files.write(fileNameAndPath, file.getBytes());
-		} else {
-			imageUUID = imgName;
-		}
-		
-		productDetail.setImage(productDetailDTO.getImage());
-		productDetailService.save(productDetail);
-		return "redirect:/admin/products";
+	public String createProduct(@ModelAttribute("productDetail") ProductDetail theProductDetail) {
+		productDetailService.save(theProductDetail);
+		return "redirect:/admin/product/detail";
 	}
 	
 	@GetMapping("/product/detail")

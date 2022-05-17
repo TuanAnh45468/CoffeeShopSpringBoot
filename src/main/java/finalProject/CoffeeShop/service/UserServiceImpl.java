@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		User user = new User(registrationDto.getName(), 
 				registrationDto.getEmail(),
-				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_ADMIN")));
+				passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
 		return userRepository.save(user);
 	}
 

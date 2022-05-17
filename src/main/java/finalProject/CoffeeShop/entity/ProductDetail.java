@@ -48,9 +48,6 @@ public class ProductDetail {
 	@Column(name="price")
 	private double price;
 	
-	@Column(name="image")
-	private String image;
-	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(
 			name="review",
@@ -89,7 +86,6 @@ public class ProductDetail {
 		this.description = description;
 		this.details = details;
 		this.price = price;
-		this.image = image;
 		this.userList = userList;
 		this.userListCart = userListCart;
 		this.category = category;
@@ -192,15 +188,5 @@ public class ProductDetail {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
-	
 	
 }
