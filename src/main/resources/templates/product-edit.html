@@ -29,7 +29,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a th:href="@{/admin}" class="nav-link">Home</a>
+          <a th:href="@{/admin/products}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
@@ -71,8 +71,8 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a th:href="@{/admin}" class="brand-link">
-        <img src="assets/img/favicon.ico" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <a th:href="@{/admin/products}" class="brand-link">
+        <img src="/assets/img/favicon.ico" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
           style="opacity: .8">
         <span class="brand-text font-weight-light">Coffeez</span>
       </a>
@@ -82,7 +82,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="assets/img/admin/avatar4.png" class="img-circle elevation-2" alt="User Image">
+            <img src="/assets/img/admin/avatar4.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block">Admin Manager</a>
@@ -106,14 +106,7 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a th:href="@{/admin}" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                </p>
-              </a>
-            </li>
+            
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-book"></i>
@@ -131,27 +124,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a th:href="@{/admin/product/addQuantity}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Product Add</p>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a th:href="@{/admin/product/create}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Product Create</p>
-                  </a>
-                </li>
-<!--                 <li class="nav-item">
-                  <a th:href="@{/product-edit}" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Product Edit</p>
-                  </a>
-                </li> -->
-                <li class="nav-item">
-                  <a th:href="@{/admin/product/detail}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Product Detail</p>
                   </a>
                 </li>
               </ul>
@@ -177,7 +152,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a th:href="@{/admin}">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/admin/products}">Home</a></li>
                 <li class="breadcrumb-item active">Product Edit</li>
               </ol>
             </div>
@@ -252,57 +227,16 @@
                   <label for="inputproductLeader">Product Price</label>
                   <input type="number" id="inputPrice" class="form-control" th:field=*{price}>
                 </div>
-                <button type="submit">Update</button>
+                <button type="submit" class="btn btn-success float-right">Update</button>
               </form>
               
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <div class="col-md-6">
-            <div class="card card-secondary">
-              <div class="card-header">
-                <h3 class="card-title">Additional Infomation</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="inputCountry">Country</label>
-                  <input type="number" id="inputCountry" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="inputRegion">Region</label>
-                  <input type="number" id="inputRegion" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="inputMethod">Method</label>
-                  <input type="number" id="inputMethod" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="inputSpecies">Species</label>
-                  <input type="number" id="inputSpecies" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="inputRoast">Roast</label>
-                  <input type="number" id="inputRoast" class="form-control">
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!--  -->
-          </div>
+          
         </div>
-        <div class="row">
-          <div class="col-12">
-            <a href="#" class="btn btn-secondary">Cancel</a>
-            <input type="submit" value="Save Changes" class="btn btn-success float-right">
-          </div>
-        </div>
+        
       </section>
       <!-- /.content -->
     </div>
@@ -324,11 +258,11 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="assets/js/jquery.min.js"></script>
+  <script src="/assets/js/plugins/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/plugins/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="assets/js/adminlte.min.js"></script>
+  <script src="/assets/js/plugins/adminlte.min.js"></script>
    
 </body>
 
