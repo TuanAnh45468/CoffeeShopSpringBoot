@@ -922,7 +922,7 @@
             <!-- Product Start -->
           <div class="andro_product andro_product-list" th:each="product: ${products}">
             <div class="andro_product-thumb">
-              <a th:href="@{/product-single}"><img src="assets/img/products/8.png" alt="product"></a>
+              <a th:href="@{/product-single(productId=${product.id})}"><img src="assets/img/products/8.png" alt="product"></a>
             </div>
             <div class="andro_product-body">
               <div class="andro_rating-wrapper">
@@ -935,7 +935,7 @@
                 </div>
                 <span>5 Stars</span>
               </div>
-              <h5 class="andro_product-title" th:text="${product.name}"> <a th:href="@{/product-single}">Cold brewed</a> </h5>
+              <h5 class="andro_product-title" th:text="${product.name}"> <a th:href="@{/product-single(productId=${product.id})}"></a> </h5>
               <p th:text="${product.description}">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
               <div class="andro_product-footer">
                 <div class="andro_product-price">
@@ -1996,7 +1996,7 @@
             </ul>
             <div class="andro_footer-offer">
               <p>Signup and get exclusive offers and coupon codes</p>
-              <a href="#" class="andro_btn-custom btn-sm shadow-none">Sign Up</a>
+              <a href="/register" class="andro_btn-custom btn-sm shadow-none">Sign Up</a>
             </div>
           </div>
         </div>

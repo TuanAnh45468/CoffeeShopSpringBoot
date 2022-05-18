@@ -79,7 +79,7 @@
             <span></span>
           </div>
 
-          <div class="container-fluid">
+          <div class="container-fluid" th:object="${products}">
             <div class="row">
               <div class="col-md-5">
                 <img src="assets/img/products/9.png" alt="product">
@@ -99,7 +99,7 @@
                     <span>4 Stars</span>
                   </div>
 
-                  <h3>Cold brewed</h3>
+                  <h3 >[[${products.name}]]</h3>
 
                   <div class="andro_product-price">
                     <span>8$</span>
@@ -553,14 +553,14 @@
               <span>4 Stars</span>
             </div>
 
-            <h3>Cold brewed</h3>
+            <h3>[[${products.name}]]</h3>
 
             <div class="andro_product-price">
-              <span>8$</span>
+              <span>[[${products.price}]]</span>
               <span>14$</span>
             </div>
 
-            <p class="andro_product-excerpt">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+            <p class="andro_product-excerpt">[[${products.description}]]</p>
 
             <form class="andro_product-atc-form">
 
