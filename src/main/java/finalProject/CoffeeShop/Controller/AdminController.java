@@ -56,13 +56,12 @@ public class AdminController {
 	}
 	
 	@PostMapping("/product/create")
-	public String createProduct(@ModelAttribute("productDTO") ProductDetailDTO productDetailDTO, 
-			@RequestParam("productImage") MultipartFile file, 
-			@RequestParam("imgName") String imgName) throws IOException {
+	public String createProduct(@ModelAttribute("productDTO") ProductDetailDTO productDetailDTO){
 		
 		ProductDetail productDetail = new ProductDetail();
 		productDetail.setId(productDetailDTO.getId());
 		productDetail.setName(productDetailDTO.getName());
+		System.out.println(productDetail.getName());
 		productDetail.setDescription(productDetailDTO.getDescription());
 		productDetail.setCategory(categoryService.findById(productDetailDTO.getCategoryID()));
 		productDetail.setBrand(productDetailDTO.getBrand());
@@ -70,16 +69,7 @@ public class AdminController {
 		productDetail.setWeight(productDetailDTO.getWeight());
 		productDetail.setQuantity(productDetailDTO.getQuantity());
 		productDetail.setPrice(productDetailDTO.getPrice());
-		String imageUUID;
-		if(!file.isEmpty()) {
-			imageUUID = file.getOriginalFilename();
-			Path fileNameAndPath = Paths.get(uploadDir, imageUUID);
-			Files.write(fileNameAndPath, file.getBytes());
-		} else {
-			imageUUID = imgName;
-		}
 		
-		productDetail.setImage(productDetailDTO.getImage());
 		productDetailService.save(productDetail);
 		return "redirect:/admin/products";
 	}
