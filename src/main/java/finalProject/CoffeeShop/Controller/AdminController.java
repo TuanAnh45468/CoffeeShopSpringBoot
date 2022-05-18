@@ -24,7 +24,7 @@ import finalProject.CoffeeShop.service.ProductDetailService;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	public static String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/assets/img";
+	//public static String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/assets/img";
 	
 	@Autowired
 	ProductDetailService productDetailService;
@@ -80,8 +80,21 @@ public class AdminController {
 	}
 	
 	@GetMapping("/product/edit")
-	public String showEditProduct() {
+	public String showEditProduct(@RequestParam("productId") int theId, 
+			Model model) {
+		//get the product from the service
+		ProductDetail theProduct = productDetailService.findById(theId);
+		
+		//set employee as a model attribute to pre-populate the form
+		model.addAttribute("product", theProduct);
 		return "product-edit";
+	}
+	
+	@PostMapping("/product/edit")
+	public String updateProduct(@ModelAttribute("product") ProductDetail productDetail) {
+		//save the product
+		productDetailService.save(productDetail);
+		return "redirect:/admin/products";
 	}
 	
 }
