@@ -97,4 +97,10 @@ public class AdminController {
 		return "redirect:/admin/products";
 	}
 	
+	@GetMapping("/product/delete")
+	public String deleteProduct(@RequestParam("productId") int theId, Model model) {
+		productDetailService.deleteById(theId);
+		return "redirect:/admin/products";
+	}
+	
 }
