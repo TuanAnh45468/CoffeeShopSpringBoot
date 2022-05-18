@@ -32,14 +32,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/login").permitAll().anyRequest().authenticated()
+		http.authorizeRequests().antMatchers("/login").permitAll()
+				.antMatchers("/admin/**").hasRole("ADMIN")
+				.anyRequest().authenticated()
 				.and()
 				.formLogin().loginPage("/login").permitAll().failureUrl("/login?error=true").defaultSuccessUrl("/").usernameParameter("email").passwordParameter("password")
 				.and()
 				.logout()
 				.invalidateHttpSession(true).clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
-				.permitAll();
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?/logout")
+				.permitAll()
+				.and()
+				.exceptionHandling().accessDeniedPage("/error");
 	}
 	
     @Override
