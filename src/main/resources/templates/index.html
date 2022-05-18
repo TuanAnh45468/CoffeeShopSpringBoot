@@ -874,44 +874,6 @@
 
           <!-- Product Start -->
           <div class="andro_product andro_product-list">
-            <div class="andro_product-thumb">
-              <a th:href="@{/product-single}"><img src="assets/img/products/4.png" alt="product"></a>
-            </div>
-            <div class="andro_product-body">
-              <div class="andro_rating-wrapper">
-                <div class="andro_rating">
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-                <span>3 Stars</span>
-              </div>
-              <h5 class="andro_product-title"> <a th:href="@{/product-single}">Arabica Green</a> </h5>
-              <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-              <div class="andro_product-footer">
-                <div class="andro_product-price">
-                  <span>19$</span>
-                </div>
-                <div class="btn-group">
-                  <a th:href="@{/product-single}" class="andro_btn-custom btn-sm">Buy Now</a>
-                  <button type="button" class="andro_btn-custom dropdown-toggle dropdown-toggle-split btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#quickViewModal"> <i class="fa fa-eye"></i> Quick View</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-sync"></i> Compare</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-heart"></i> Add To Wishlist</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Product End -->
-
-          <!-- Product Start -->
-          <div class="andro_product andro_product-list">
             <div class="andro_product-badge andro_badge-featured">
               <i class="fa fa-star"></i>
               <span>Featured</span>
@@ -957,46 +919,8 @@
 
         <div class="col-lg-6">
 
-          <!-- Product Start -->
-          <div class="andro_product andro_product-list">
-            <div class="andro_product-thumb">
-              <a th:href="@{/product-single}"><img src="assets/img/products/14.png" alt="product"></a>
-            </div>
-            <div class="andro_product-body">
-              <div class="andro_rating-wrapper">
-                <div class="andro_rating">
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-                <span>3 Stars</span>
-              </div>
-              <h5 class="andro_product-title"> <a th:href="@{/product-single}">Arabica Roasted</a> </h5>
-              <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-              <div class="andro_product-footer">
-                <div class="andro_product-price">
-                  <span>12$</span>
-                </div>
-                <div class="btn-group">
-                  <a th:href="@{/product-single}" class="andro_btn-custom btn-sm">Buy Now</a>
-                  <button type="button" class="andro_btn-custom dropdown-toggle dropdown-toggle-split btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#quickViewModal"> <i class="fa fa-eye"></i> Quick View</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-sync"></i> Compare</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-heart"></i> Add To Wishlist</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Product End -->
-
-          <!-- Product Start -->
-          <div class="andro_product andro_product-list">
+            <!-- Product Start -->
+          <div class="andro_product andro_product-list" th:each="product: ${products}">
             <div class="andro_product-thumb">
               <a th:href="@{/product-single}"><img src="assets/img/products/8.png" alt="product"></a>
             </div>
@@ -1011,11 +935,11 @@
                 </div>
                 <span>5 Stars</span>
               </div>
-              <h5 class="andro_product-title"> <a th:href="@{/product-single}">Cold brewed</a> </h5>
-              <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+              <h5 class="andro_product-title" th:text="${product.name}"> <a th:href="@{/product-single}">Cold brewed</a> </h5>
+              <p th:text="${product.description}">Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
               <div class="andro_product-footer">
                 <div class="andro_product-price">
-                  <span>19$</span>
+                  <span th:text="${product.price}">19$</span>
                 </div>
                 <div class="btn-group">
                   <a th:href="@{/product-single}" class="andro_btn-custom btn-sm">Buy Now</a>
@@ -1031,46 +955,7 @@
               </div>
             </div>
           </div>
-          <!-- Product End -->
-
-          <!-- Product Start -->
-          <div class="andro_product andro_product-list">
-            <div class="andro_product-thumb">
-              <a th:href="@{/product-single}"><img src="assets/img/products/7.png" alt="product"></a>
-            </div>
-            <div class="andro_product-body">
-              <div class="andro_rating-wrapper">
-                <div class="andro_rating">
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                  <i class="fa fa-star active"></i>
-                </div>
-                <span>5 Stars</span>
-              </div>
-              <h5 class="andro_product-title"> <a th:href="@{/product-single}">Robusta Roasted</a> </h5>
-              <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-              <div class="andro_product-footer">
-                <div class="andro_product-price">
-                  <span>8$</span>
-                  <span>15$</span>
-                </div>
-                <div class="btn-group">
-                  <a th:href="@{/product-single}" class="andro_btn-custom btn-sm">Buy Now</a>
-                  <button type="button" class="andro_btn-custom dropdown-toggle dropdown-toggle-split btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#quickViewModal"> <i class="fa fa-eye"></i> Quick View</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-sync"></i> Compare</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-heart"></i> Add To Wishlist</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Product End -->
+          <!-- Product End -->   
 
         </div>
 
