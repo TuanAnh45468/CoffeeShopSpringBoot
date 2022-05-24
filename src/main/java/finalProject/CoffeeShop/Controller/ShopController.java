@@ -19,6 +19,7 @@ public class ShopController {
 	
 	@GetMapping("/login")
 	public String login() {
+		GlobalData.cart.clear();
 		return "login";
 	}
 	

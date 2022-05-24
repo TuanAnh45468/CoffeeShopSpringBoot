@@ -479,8 +479,8 @@
         <h1>Cart</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/}">Shop</a></li>
             <li class="breadcrumb-item active" aria-current="page">Cart</li>
           </ol>
         </nav>
@@ -499,18 +499,21 @@
           <tr>
             <th class="remove-item"></th>
             <th>Product</th>
-            <th>Price</th>
+            <th>Breed</th>
+            <th>Brand</th>
             <th>Total</th>
           </tr>
         </thead>
         <tbody>
         
-          <tr th:each="ca: ${cart}">
+          <tr th:each="ca, iStat: ${cart}">
             <td class="remove">
-              <button type="button" class="close-btn close-danger remove-from-cart">
+            <a th:href="@{/cart/removeItem/{index}(index=${iStat.index})}">
+              <button type="button" class="close-btn close-danger remove-from-cart" >
                 <span></span>
                 <span></span>
               </button>
+              </a>
             </td>
             
             <td data-title="Product">
@@ -523,7 +526,8 @@
               </div>
             </td>
             
-            <td data-title="Price"> <strong th:text="${ca.price}">12.99$</strong> </td>
+            <td data-title="Price"> <strong th:text="${ca.breed}">12.99$</strong> </td>
+            <td data-title="Price"> <strong th:text="${ca.brand}">12.99$</strong> </td>
             <td data-title="Total"> <strong th:text="${ca.price}">12.99$</strong></td>    
           </tr>
           
