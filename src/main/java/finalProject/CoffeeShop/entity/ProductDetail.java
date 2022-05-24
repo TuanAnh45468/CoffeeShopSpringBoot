@@ -59,14 +59,6 @@ public class ProductDetail {
 			)
 	private List<User> userList;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinTable(
-			name="cart_product",
-			joinColumns = @JoinColumn(name= "id_product", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name="id_user", referencedColumnName = "id")
-			)
-	private List<User> userListCart;
-	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="id_cate")
 	private Category category;
@@ -91,7 +83,6 @@ public class ProductDetail {
 		this.price = price;
 		this.image = image;
 		this.userList = userList;
-		this.userListCart = userListCart;
 		this.category = category;
 	}
 
@@ -111,14 +102,6 @@ public class ProductDetail {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public List<User> getUserListCart() {
-		return userListCart;
-	}
-
-	public void setUserListCart(List<User> userListCart) {
-		this.userListCart = userListCart;
 	}
 
 	public Category getCategory() {

@@ -386,8 +386,8 @@
                 <a th:href="@{cart}" title="Your Cart">
                   <i class="flaticon-shopping-basket"></i>
                   <div class="andro_header-cart-content">
-                    <span>9 Packet</span>
-                    <span>249.99$</span>
+                    <span>[[${cartCount}]] packets</span>
+                    <span>[[${total}]]</span>
                   </div>
                 </a>
               </li>
@@ -942,7 +942,7 @@
                   <span th:text="${product.price}">19$</span>
                 </div>
                 <div class="btn-group">
-                  <a th:href="@{/product-single}" class="andro_btn-custom btn-sm">Buy Now</a>
+                  <a th:href="@{/addToCart(productId=${product.id})}" class="andro_btn-custom btn-sm">Buy Now</a>
                   <button type="button" class="andro_btn-custom dropdown-toggle dropdown-toggle-split btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>

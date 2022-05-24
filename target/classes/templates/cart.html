@@ -374,8 +374,8 @@
                 <a th:href="@{/cart}" title="Your Cart">
                   <i class="flaticon-shopping-basket"></i>
                   <div class="andro_header-cart-content">
-                    <span>9 Packet</span>
-                    <span>249.99$</span>
+                   <span>[[${cartCount}]] Packets</span>
+                    <span>[[${total}]]</span>
                   </div>
                 </a>
               </li>
@@ -500,78 +500,33 @@
             <th class="remove-item"></th>
             <th>Product</th>
             <th>Price</th>
-            <th>Qunantity</th>
             <th>Total</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+        
+          <tr th:each="ca: ${cart}">
             <td class="remove">
               <button type="button" class="close-btn close-danger remove-from-cart">
                 <span></span>
                 <span></span>
               </button>
             </td>
+            
             <td data-title="Product">
               <div class="andro_cart-product-wrapper">
                 <img src="assets/img/products/1.jpg" alt="prod1">
                 <div class="andro_cart-product-body">
-                  <h6> <a href="#">Mocha</a> </h6>
+                  <h6 th:text="${ca.name}"> <a href="#">Mocha</a> </h6>
                   <p>Packets </p>
                 </div>
               </div>
             </td>
-            <td data-title="Price"> <strong>12.99$</strong> </td>
-            <td class="quantity" data-title="Quantity">
-              <input type="number" class="qty form-control" value="1">
-            </td>
-            <td data-title="Total"> <strong>12.99$</strong> </td>
+            
+            <td data-title="Price"> <strong th:text="${ca.price}">12.99$</strong> </td>
+            <td data-title="Total"> <strong th:text="${ca.price}">12.99$</strong></td>    
           </tr>
-          <tr>
-            <td class="remove">
-              <button type="button" class="close-btn close-danger remove-from-cart">
-                <span></span>
-                <span></span>
-              </button>
-            </td>
-            <td data-title="Product">
-              <div class="andro_cart-product-wrapper">
-                <img src="assets/img/products/5.jpg" alt="prod1">
-                <div class="andro_cart-product-body">
-                  <h6> <a href="#">Cappucinos 30:0</a> </h6>
-                  <p>1 Piece</p>
-                </div>
-              </div>
-            </td>
-            <td data-title="Price"> <strong>9.99$</strong> </td>
-            <td class="quantity" data-title="Quantity">
-              <input type="number" class="qty form-control" value="1">
-            </td>
-            <td data-title="Total"> <strong>9.99$</strong> </td>
-          </tr>
-          <tr>
-            <td class="remove">
-              <button type="button" class="close-btn close-danger remove-from-cart">
-                <span></span>
-                <span></span>
-              </button>
-            </td>
-            <td data-title="Product">
-              <div class="andro_cart-product-wrapper">
-                <img src="assets/img/products/4.jpg" alt="prod1">
-                <div class="andro_cart-product-body">
-                  <h6> <a href="#">Mocha</a> </h6>
-                  <p>3 Packets </p>
-                </div>
-              </div>
-            </td>
-            <td data-title="Price"> <strong>13.99$</strong> </td>
-            <td class="quantity" data-title="Quantity">
-              <input type="number" class="qty form-control" value="1">
-            </td>
-            <td data-title="Total"> <strong>13.99$</strong> </td>
-          </tr>
-
+          
         </tbody>
       </table>
       <!-- Cart Table End -->
@@ -750,16 +705,16 @@
           <table>
             <tbody>
               <tr>
-                <th>Subtotal</th>
-                <td>90.99$</td>
+                <th >Subtotal</th>
+                <td >[[${total}]]</td>
               </tr>
               <tr>
                 <th>Tax</th>
-                <td> 9.99$ <span class="small">(11%)</span> </td>
+                <td> 0$ <span class="small"></span> </td>
               </tr>
               <tr>
                 <th>Total</th>
-                <td> <b>99.99$</b> </td>
+                <td> <b>[[${total}]]</b> </td>
               </tr>
             </tbody>
           </table>
