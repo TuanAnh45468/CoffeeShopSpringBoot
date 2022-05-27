@@ -6,6 +6,8 @@ import finalProject.CoffeeShop.entity.ProductDetail;
 
 public interface ProductDetailService {
 	public List<ProductDetail> findAll();
+//	public List<ProductDetail> sortByBrand();
+//	public List<ProductDetail> sortByName();
 	
 	public ProductDetail findById(int theId);
 	

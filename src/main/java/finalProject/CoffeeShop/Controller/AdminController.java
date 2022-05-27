@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import finalProject.CoffeeShop.Strategy.Strategy;
+import finalProject.CoffeeShop.Strategy.StrategyFactory;
+import finalProject.CoffeeShop.Strategy.Strategy.StrategyName;
 import finalProject.CoffeeShop.dto.ProductDetailDTO;
 import finalProject.CoffeeShop.entity.ProductDetail;
 import finalProject.CoffeeShop.service.CategoryService;
@@ -32,6 +37,25 @@ public class AdminController {
 	@Autowired
 	CategoryService categoryService;
 	
+	@Autowired
+	private StrategyFactory strategyFactory;
+	
+	public List<ProductDetail> sortByName( ) {
+		//get Strategy by passing the name
+		Strategy strategy = strategyFactory.findStrategy(StrategyName.sortByName);
+		
+		//call method define in strategy
+		return strategy.doStuff();
+	}
+
+	
+	public List<ProductDetail> sortByBrand() {
+		//get Strategy by passing the name
+		Strategy strategy = strategyFactory.findStrategy(StrategyName.sortByBrand);
+		
+		//call method define in strategy
+		return strategy.doStuff();
+	}
 	@GetMapping("/")
 	public String adminHomepage() {
 		return "admin";
